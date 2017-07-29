@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMotor))]
+[RequireComponent(typeof(Motor))]
 public class PlayerControll : MonoBehaviour {
 
-    PlayerMotor motor;
+    Motor motor;
 
 	// Use this for initialization
 	void Awake () {
-        motor = GetComponent<PlayerMotor>();
+        motor = GetComponent<Motor>();
 	}
 
     private void Update()

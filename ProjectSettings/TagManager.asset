@@ -17,8 +17,8 @@ TagManager:
   - GroundCheck
   - Ground
   - Item
-  - 
-  - 
+  - Enemy
+  - Weapon
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2174743843
+    locked: 0
+  - name: Ref
+    uniqueID: 277231825
     locked: 0
