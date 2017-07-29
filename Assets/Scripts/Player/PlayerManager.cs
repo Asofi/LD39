@@ -5,6 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerManager : MonoBehaviour {
 
+    public enum WeaponTypes
+    {
+        FISTS,
+        WRENCH,
+        PISTOL
+    }
+
+    public WeaponTypes SelectedWeaponType;
     public static PlayerManager Instance;
 
     public BaseWeapon SelectedWeapon;
@@ -62,6 +70,7 @@ public class PlayerManager : MonoBehaviour {
         {
             SelectedWeapon.Attack();
         }
+
 	}
 
     public void GetWrench()
@@ -83,6 +92,7 @@ public class PlayerManager : MonoBehaviour {
                 {
                     Weapons[i].gameObject.SetActive(true);
                     SelectedWeapon = Weapons[i];
+                    SelectedWeaponType = WeaponTypes.WRENCH;
                 }
             }
         }
@@ -110,6 +120,7 @@ public class PlayerManager : MonoBehaviour {
                 {
                     Weapons[i].gameObject.SetActive(true);
                     SelectedWeapon = Weapons[i];
+                    SelectedWeaponType = WeaponTypes.PISTOL;
                 }
             }
         }

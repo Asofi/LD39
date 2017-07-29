@@ -22,9 +22,11 @@ public class Motor : MonoBehaviour {
         float newVelocity = dir * Speed * Time.deltaTime * (sprint ? 1.5f : 1);
         m_RB.velocity = new Vector2(newVelocity, Mathf.Clamp(m_RB.velocity.y, -10, 10));
 
-        if (dir > 0)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (mousePos.x > transform.position.x)
             GFX.localEulerAngles = Vector2.zero;
-        if (dir < 0)
+        if (mousePos.x < transform.position.x)
             GFX.localEulerAngles = new Vector3(0, 180, 0);
     }
 
