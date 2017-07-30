@@ -11,6 +11,7 @@ public class Wrench_Item : BaseItem {
 
     public override void Examine()
     {
+        PlayerManager.Instance.Talker.Say("This is Wrench", "I can use it for defend!");
         print("This if wrench");
     }
 }

@@ -28,6 +28,7 @@ public class Door : BaseItem {
 
     public override void Examine()
     {
+        PlayerManager.Instance.Talker.Say("This is Door");
         print("This is door");
     }
 }

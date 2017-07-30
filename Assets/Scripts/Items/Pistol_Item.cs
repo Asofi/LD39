@@ -11,6 +11,7 @@ public class Pistol_Item : BaseItem {
 
     public override void Examine()
     {
+        PlayerManager.Instance.Talker.Say("This is pistol");
         print("This is Pistol");
     }
 

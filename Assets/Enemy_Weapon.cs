@@ -3,25 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Pistol_Weapon : BaseWeapon {
-
-    public Transform FirePoint;
-    public Rigidbody2D BulletPrefab;
-    public LineRenderer BulletTrail;
-
-    public float ShootRadius;
+public class Enemy_Weapon : BaseWeapon {
 
     bool canShoot = true;
+    public Transform FirePoint;
+    public Transform Target;
+    public float ShootRadius;
+    public LineRenderer BulletTrail;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public override void Attack()
     {
@@ -38,11 +27,11 @@ public class Pistol_Weapon : BaseWeapon {
             if (hit.collider != null)
             {
                 print(hit.collider.name);
-                if (hit.collider.CompareTag("Enemy"))
+                if (hit.collider.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<BaseEnemy>().TakeDamage(Damage);
+                    hit.collider.GetComponent<PlayerManager>().TakeDamage(Damage);
                 }
-                    BulletTrail.SetPosition(1, hit.point);
+                BulletTrail.SetPosition(1, hit.point);
             }
             else
             {

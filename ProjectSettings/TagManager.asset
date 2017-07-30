@@ -20,7 +20,7 @@ TagManager:
   - Item
   - Enemy
   - Weapon
-  - 
+  - DistanceChecker
   - 
   - 
   - 
@@ -45,6 +45,6 @@ TagManager:
   - name: Player
     uniqueID: 2174743843
     locked: 0
-  - name: Ref
+  - name: Bubble
     uniqueID: 277231825
     locked: 0

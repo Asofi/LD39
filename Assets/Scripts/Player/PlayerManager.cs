@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerManager : MonoBehaviour {
 
+    public static PlayerManager Instance;
+
+    public BubbleTalker Talker;
     public enum WeaponTypes
     {
         FISTS,
@@ -13,7 +16,6 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public WeaponTypes SelectedWeaponType;
-    public static PlayerManager Instance;
 
     public BaseWeapon SelectedWeapon;
 
@@ -69,6 +71,7 @@ public class PlayerManager : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
         {
             SelectedWeapon.Attack();
+            print("Attack");
         }
 
 	}

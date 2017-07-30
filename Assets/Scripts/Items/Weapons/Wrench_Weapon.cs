@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Wrench_Weapon : BaseWeapon {
 
-    public float Damage;
 
     public Animator anim;
 
