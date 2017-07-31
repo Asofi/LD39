@@ -33,8 +33,8 @@ public class SmoothCameraFlollow : MonoBehaviour {
         if (Target == null)
             return;
 
-        float posX = Mathf.SmoothDamp(transform.position.x, Target.transform.position.x, ref velocity.x, SmoothTimeX);
-        float posY = Mathf.SmoothDamp(transform.position.y, Target.transform.position.y, ref velocity.y, SmoothTimeY);
+        float posX = Mathf.SmoothDamp(transform.position.x, Target.transform.position.x + Offset.x, ref velocity.x, SmoothTimeX);
+        float posY = Mathf.SmoothDamp(transform.position.y, Target.transform.position.y + Offset.y, ref velocity.y, SmoothTimeY);
 
         transform.position = new Vector3(posX, posY, transform.position.z);
 

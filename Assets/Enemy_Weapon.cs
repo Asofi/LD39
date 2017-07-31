@@ -10,6 +10,7 @@ public class Enemy_Weapon : BaseWeapon {
     public Transform Target;
     public float ShootRadius;
     public LineRenderer BulletTrail;
+    public LayerMask Mask;
 
 
     public override void Attack()
@@ -22,13 +23,13 @@ public class Enemy_Weapon : BaseWeapon {
             StartCoroutine(shotTimer = ShotTimer());
 
             Ray shotRay = new Ray(FirePoint.position, FirePoint.right);
-            RaycastHit2D hit = Physics2D.Raycast(shotRay.origin, shotRay.direction, ShootRadius);
+            RaycastHit2D hit = Physics2D.Raycast(shotRay.origin, shotRay.direction, ShootRadius, Mask);
             BulletTrail.SetPosition(0, FirePoint.position);
             if (hit.collider != null)
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    hit.collider.GetComponent<PlayerManager>().TakeDamage(Damage);
+                    hit.collider.GetComponent<PlayerManager>().TakeDamage(Random.Range(Damage-10, Damage));
                 }
                 BulletTrail.SetPosition(1, hit.point);
             }

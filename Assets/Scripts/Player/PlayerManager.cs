@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerManager : MonoBehaviour {
@@ -39,6 +40,8 @@ public class PlayerManager : MonoBehaviour {
 
     public Pistol_Weapon GunScript;
 
+    Tween HpTween;
+
     public float Health
     {
         get
@@ -48,11 +51,16 @@ public class PlayerManager : MonoBehaviour {
 
         set
         {
-            if (value >= 0 && value <= MaxHealth)
+            if (value >= 0)
             {
-                transform.DOKill();
+                if (value >= MaxHealth)
+                    value = MaxHealth;
                 health = value;
-                HealthBar.DOFillAmount(health / MaxHealth, 0.1f).SetId(transform);
+                HealthBar.fillAmount = health / MaxHealth;
+                //HpTween = HealthBar.DOFillAmount(health / MaxHealth, 0.1f).SetId(transform);
+            } else if(value <= 0)
+            {
+                Death();
             }
         }
     }
@@ -73,7 +81,7 @@ public class PlayerManager : MonoBehaviour {
     // Use this for initialization
     void Awake () {
 
-        Instance = Instance ?? this;
+        Instance = this;
 
         Health = MaxHealth;
         Stamina = MaxStamina;
@@ -92,8 +100,8 @@ public class PlayerManager : MonoBehaviour {
 
         if (Input.GetButtonDown("Fire1"))
         {
-
-            SelectedWeapon.Attack();
+            if (SelectedWeapon != null)
+                SelectedWeapon.Attack();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -114,6 +122,7 @@ public class PlayerManager : MonoBehaviour {
     public void GetWrench()
     {
         GotWrench = true;
+        if (MeleeHUD != null)
         MeleeHUD.SetActive(true);
         print("U got Wrench");
         SelectWrench();
@@ -170,7 +179,25 @@ public class PlayerManager : MonoBehaviour {
     {
         Health = Mathf.Clamp(Health - dmg, 0, MaxHealth);
         if (Health == 0)
-            print("DEAD! GAME OVER, BUDDY!");
+        {
+            Death();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Death"))
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        Time.timeScale = 0;
+        Health = 0;
+        HealthBar.fillAmount = 0;
+        EventManager.GameOver();
     }
 
 

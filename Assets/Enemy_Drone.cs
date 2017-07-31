@@ -74,20 +74,21 @@ public class Enemy_Drone : BaseEnemy {
                     LookAt.Target = null;
                 if (Patroling)
                 {
-                    if (Vector2.Distance(transform.position, curWaypoint.position) > .1f)
+                    if (Vector2.Distance(transform.position, curWaypoint.position) > 1f)
                     {
                         m_Motor.Move(curWaypoint.position.x > transform.position.x ? 1 : -1);
                     }
                     else
                     {
+                        print("Next state");
                         NextWaypoint();
                     }
                 } else
                 {
                     int dir;
-                    if ((StartPos.x + -.1f) > transform.position.x)
+                    if ((StartPos.x + -.2f) > transform.position.x)
                         dir = 1;
-                    else if ((StartPos.x + .1f) < transform.position.x)
+                    else if ((StartPos.x + .2f) < transform.position.x)
                         dir = -1;
                     else
                         dir = 0;
@@ -129,7 +130,7 @@ public class Enemy_Drone : BaseEnemy {
 
     void NextWaypoint()
     {
-        i = (int)Mathf.Repeat(i + 1, 2);
+        i = (int)Mathf.Repeat(i + 1, PatrolPoints.Length);
         curWaypoint = PatrolPoints[i];
     }
 

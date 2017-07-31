@@ -6,6 +6,7 @@ public class Battery_Item : BaseItem {
 
     [TextArea]
     public string[] Descriptions;
+    public float Amount = 25;
 
     public override void Examine()
     {
@@ -16,7 +17,7 @@ public class Battery_Item : BaseItem {
     public override void Interact()
     {
         base.Interact();
-        PlayerManager.Instance.RefillEnergy(20);
+        PlayerManager.Instance.RefillEnergy(Amount);
         Destroy(gameObject);
     }
 

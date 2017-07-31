@@ -10,6 +10,7 @@ public class LookAt : MonoBehaviour {
     Vector2 aimPos = Vector2.zero;
     Vector2 curAimPos = Vector2.zero;
     bool isAiming = false;
+    public float Spread = 0.7f;
 
     Quaternion startRot;
     // Use this for initialization
@@ -50,7 +51,7 @@ public class LookAt : MonoBehaviour {
     IEnumerator RandomAim()
     {
         isAiming = true;
-        aimPos = (Vector2)Target.position + Random.insideUnitCircle * 0.7f;
+        aimPos = (Vector2)Target.position + Random.insideUnitCircle * Spread;
         float time = Random.Range(0.5f, 1f);
         Tween tween = DOTween.To(() => curAimPos, x => curAimPos = x, aimPos, time);
         yield return tween.WaitForCompletion();

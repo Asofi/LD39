@@ -6,7 +6,7 @@ using DG.Tweening;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class BaseEnemy : MonoBehaviour {
 
-    public RectTransform HealthBar;
+    public UnityEngine.UI.Image HealthBar;
 
     protected Rigidbody2D m_RB;
     private float health;
@@ -25,7 +25,7 @@ public class BaseEnemy : MonoBehaviour {
             {
                 transform.DOKill();
                 health = value;
-                HealthBar.DOScaleX(health/MaxHealth, 0.1f).SetId(transform);
+                HealthBar.DOFillAmount(health/MaxHealth, 0.1f).SetId(transform);
             }
         }
     }
@@ -49,6 +49,11 @@ public class BaseEnemy : MonoBehaviour {
 
     public virtual void Death()
     {
+        DropAfterDeath drop = GetComponent<DropAfterDeath>();
+        if(drop != null)
+        {
+            drop.Spawn();
+        }
         Destroy(gameObject);
     }
 }

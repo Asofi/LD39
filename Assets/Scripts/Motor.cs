@@ -46,6 +46,7 @@ public class Motor : MonoBehaviour {
 
     public void Jump()
     {
+        print(GroundCheck.Grounded);
         if (GroundCheck.Grounded)
         {
             m_RB.AddForce(Vector2.up * JumpForce);
