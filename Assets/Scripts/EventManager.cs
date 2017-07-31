@@ -6,7 +6,7 @@ public class EventManager : MonoBehaviour {
 
     public delegate void GameEvent();
 
-    public static event GameEvent OnGameStart, OnGameOver;
+    public static event GameEvent OnGameStart, OnGameOver, OnWin;
 
     public static void GameOver() {
         if (OnGameOver != null) OnGameOver();
@@ -14,6 +14,11 @@ public class EventManager : MonoBehaviour {
 
     public static void GameStart() {
         if (OnGameStart != null) OnGameStart();
+    }
+
+    public static void Win()
+    {
+        if (OnWin != null) OnWin();
     }
 
 }

@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerManager : MonoBehaviour {
 
+    public AudioPlay AP;
+
     public static PlayerManager Instance;
     public Image HealthBar;
     public BubbleTalker Talker;

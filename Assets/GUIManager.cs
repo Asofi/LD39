@@ -6,12 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour {
 
-    public RectTransform GameOver;
+    public RectTransform GameOver, Win;
 
 	// Use this for initialization
 	void Start () {
         EventManager.OnGameOver += EventManager_OnGameOver;
+        EventManager.OnWin += EventManager_OnWin;
 	}
+
+    private void EventManager_OnWin()
+    {
+        Time.timeScale = 0;
+        Win.DOLocalMoveY(0, 1).SetUpdate(true).SetEase(Ease.OutBack);
+    }
 
     private void EventManager_OnGameOver()
     {
@@ -21,11 +28,14 @@ public class GUIManager : MonoBehaviour {
     public void Restart()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);       
+        SceneManager.LoadScene(1);       
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 }

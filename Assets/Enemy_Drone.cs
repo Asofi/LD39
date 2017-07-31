@@ -80,7 +80,6 @@ public class Enemy_Drone : BaseEnemy {
                     }
                     else
                     {
-                        print("Next state");
                         NextWaypoint();
                     }
                 } else

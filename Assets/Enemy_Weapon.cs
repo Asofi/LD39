@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Enemy_Weapon : BaseWeapon {
 
+    AudioPlay AP;
     bool canShoot = true;
     public Transform FirePoint;
     public Transform Target;
@@ -12,11 +13,16 @@ public class Enemy_Weapon : BaseWeapon {
     public LineRenderer BulletTrail;
     public LayerMask Mask;
 
+    private void Start()
+    {
+        AP = transform.parent.parent.parent.GetComponent<AudioPlay>();
+    }
 
     public override void Attack()
     {
         if (canShoot)
         {
+            AP.Shoot();
             canShoot = false;
             if (shotTimer != null)
                 StopCoroutine(shotTimer);

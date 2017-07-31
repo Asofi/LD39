@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class Pistol_Weapon : BaseWeapon {
 
+    public AudioPlay AP;
+
     public Transform FirePoint;
     public LineRenderer BulletTrail;
     public LayerMask HitLayerMask;
@@ -53,6 +55,7 @@ public class Pistol_Weapon : BaseWeapon {
     {
         if (canShoot)
         {
+            AP.Shoot();
             Size -= 0.2f;
             GunBone.DOLocalMoveY(0.2f, timeBetweenShots / 2).SetLoops(2, LoopType.Yoyo);
             canShoot = false;

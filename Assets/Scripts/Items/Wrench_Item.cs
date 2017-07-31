@@ -12,7 +12,7 @@ public class Wrench_Item : BaseItem {
 
     public override void Examine()
     {
-        PlayerManager.Instance.Talker.Say("It is spectral wrench!", "I can use it for defence!");
+        PlayerManager.Instance.Talker.Say("It's spectral wrench! Great!");
         print("This if wrench");
     }
 }

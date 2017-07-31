@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wrench_Weapon : BaseWeapon {
 
-
+    public AudioPlay AP;
     public Animator anim;
 
     private void Awake()
@@ -21,6 +21,7 @@ public class Wrench_Weapon : BaseWeapon {
 
     public void DealDamage(BaseEnemy enemy)
     {
+        AP.PlayHit();
         enemy.TakeDamage(Damage);
     }
 

@@ -18,6 +18,7 @@ public class Battery_Item : BaseItem {
     {
         base.Interact();
         PlayerManager.Instance.RefillEnergy(Amount);
+        PlayerManager.Instance.AP.PlayEnergy();
         Destroy(gameObject);
     }
 
