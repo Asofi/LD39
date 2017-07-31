@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class BaseItem : MonoBehaviour, IItem {
 
     bool SteppedIn = false;
+
+    public CanvasGroup Info;
 
     public virtual void Examine()
     {
@@ -24,11 +28,15 @@ public class BaseItem : MonoBehaviour, IItem {
 
     public virtual void StepIn()
     {
+        transform.DOKill();
+        Info.DOFade(1, 0.5f).SetId(transform);
         print("Stepped It");
     }
 
     public virtual void StepOut()
     {
+        transform.DOKill();
+        Info.DOFade(0, 0.5f).SetId(transform);
         print("Stepped Out");
     }
 
@@ -58,4 +66,5 @@ public class BaseItem : MonoBehaviour, IItem {
             Examine();
         }
     }
+
 }

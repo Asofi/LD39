@@ -10,7 +10,7 @@ public class WrenchCollider : MonoBehaviour {
     private void Awake()
     {
         ww = transform.parent.GetComponent<Wrench_Weapon>();
-        col = GetComponent<Collider2D>();
+        //col = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

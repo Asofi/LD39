@@ -6,8 +6,9 @@ using DG.Tweening;
 public class Pistol_Weapon : BaseWeapon {
 
     public Transform FirePoint;
-    public Rigidbody2D BulletPrefab;
     public LineRenderer BulletTrail;
+    public LayerMask HitLayerMask;
+    public Transform GunBone;
 
     public float ShootRadius;
 
@@ -15,7 +16,6 @@ public class Pistol_Weapon : BaseWeapon {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -27,13 +27,14 @@ public class Pistol_Weapon : BaseWeapon {
     {
         if (canShoot)
         {
+            GunBone.DOLocalMoveY(0.2f, timeBetweenShots / 2).SetLoops(2, LoopType.Yoyo);
             canShoot = false;
             if (shotTimer != null)
                 StopCoroutine(shotTimer);
             StartCoroutine(shotTimer = ShotTimer());
 
             Ray shotRay = new Ray(FirePoint.position, FirePoint.right);
-            RaycastHit2D hit = Physics2D.Raycast(shotRay.origin, shotRay.direction, ShootRadius);
+            RaycastHit2D hit = Physics2D.Raycast(shotRay.origin, shotRay.direction, ShootRadius, HitLayerMask);
             BulletTrail.SetPosition(0, FirePoint.position);
             if (hit.collider != null)
             {

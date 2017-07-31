@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour {
+    public GameObject[] Parts;
 
     public float Damage = 50;
     public float timeBetweenShots = 0.2f;
@@ -14,5 +15,13 @@ public class BaseWeapon : MonoBehaviour {
     public void FinishAttack()
     {
         attackFinished = true;
+    }
+
+    public void Activate(bool flag)
+    {
+        foreach(GameObject gm in Parts)
+        {
+            gm.SetActive(flag);
+        }
     }
 }

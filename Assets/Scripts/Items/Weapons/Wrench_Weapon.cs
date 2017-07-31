@@ -15,15 +15,13 @@ public class Wrench_Weapon : BaseWeapon {
     {
         if (!attackFinished)
             return;
-        anim.Play("WrenchAttack");
+        anim.Play("Melee_Attack", 1);
+        attackFinished = false;
     }
 
     public void DealDamage(BaseEnemy enemy)
     {
-        if (!attackFinished)
-            return;
         enemy.TakeDamage(Damage);
-        attackFinished = false;
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

@@ -26,7 +26,6 @@ public class Enemy_Weapon : BaseWeapon {
             BulletTrail.SetPosition(0, FirePoint.position);
             if (hit.collider != null)
             {
-                print(hit.collider.name);
                 if (hit.collider.CompareTag("Player"))
                 {
                     hit.collider.GetComponent<PlayerManager>().TakeDamage(Damage);

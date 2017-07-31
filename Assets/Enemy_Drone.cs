@@ -17,6 +17,7 @@ public class Enemy_Drone : BaseEnemy {
     public StateTypes CurState = StateTypes.PATROL;
     StateTypes prevState;
 
+    public TMPro.TMP_Text AlertText;
     public Transform[] PatrolPoints;
     public Vector2 StartPos;
     public float Speed = 10;
@@ -65,6 +66,10 @@ public class Enemy_Drone : BaseEnemy {
         switch (CurState)
         {
             case StateTypes.PATROL:
+                if(prevState != StateTypes.PATROL)
+                {
+                    AlertText.DOColor(new Color(AlertText.color.r, AlertText.color.g, AlertText.color.b, 0), 0.5f);
+                }
                 if (LookAt.Target != null)
                     LookAt.Target = null;
                 if (Patroling)
@@ -130,6 +135,7 @@ public class Enemy_Drone : BaseEnemy {
 
     IEnumerator Warning()
     {
+        AlertText.DOColor(new Color(AlertText.color.r, AlertText.color.g, AlertText.color.b, 1), 0.5f);
         yield return new WaitForSeconds(1);
         prevState = CurState;
         CurState = StateTypes.FOLLOWING;

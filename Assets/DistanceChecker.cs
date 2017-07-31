@@ -29,7 +29,11 @@ public class DistanceChecker : MonoBehaviour {
             if(Target != null)
             {
                 DistanceToPlayer = Vector2.Distance(transform.position, Target.position);
-                isPlayerVisible = Physics2D.Raycast(transform.position, Target.position - transform.position, SeeDistance, RaycastMask).collider.CompareTag("Player");
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Target.position - transform.position, SeeDistance, RaycastMask);
+                if (hit.collider != null)
+                    isPlayerVisible = hit.collider.CompareTag("Player");
+                else
+                    isPlayerVisible = false;
             }
         }
         

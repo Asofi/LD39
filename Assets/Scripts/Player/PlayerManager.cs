@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerManager : MonoBehaviour {
 
     public static PlayerManager Instance;
-
+    public Image HealthBar;
     public BubbleTalker Talker;
     public enum WeaponTypes
     {
-        FISTS,
         WRENCH,
         PISTOL
     }
@@ -31,6 +32,9 @@ public class PlayerManager : MonoBehaviour {
         GotWrench = false,
         GotPistol = false;
 
+    public Collider2D WrenchCol;
+    public Wrench_Weapon ww;
+
     public float Health
     {
         get
@@ -40,7 +44,12 @@ public class PlayerManager : MonoBehaviour {
 
         set
         {
-            health = value;
+            if (value >= 0)
+            {
+                transform.DOKill();
+                health = value;
+                HealthBar.DOFillAmount(health / MaxHealth, 0.1f).SetId(transform);
+            }
         }
     }
 
@@ -64,14 +73,16 @@ public class PlayerManager : MonoBehaviour {
 
         Health = MaxHealth;
         Stamina = MaxStamina;
-	}
+
+        GetWrench();
+    }
 
     void Update () {
 
         if (Input.GetButtonDown("Fire1"))
         {
+
             SelectedWeapon.Attack();
-            print("Attack");
         }
 
 	}
@@ -89,11 +100,11 @@ public class PlayerManager : MonoBehaviour {
         {
             for (int i = 0; i < Weapons.Length; i++)
             {
-                if(i != 1)
-                    Weapons[i].gameObject.SetActive(false);
+                if(i != 0)
+                    Weapons[i].Activate(false);
                 else
                 {
-                    Weapons[i].gameObject.SetActive(true);
+                    Weapons[i].Activate(true);
                     SelectedWeapon = Weapons[i];
                     SelectedWeaponType = WeaponTypes.WRENCH;
                 }
@@ -115,13 +126,13 @@ public class PlayerManager : MonoBehaviour {
         {
             for (int i = 0; i < Weapons.Length; i++)
             {
-                if (i != 2)
+                if (i != 1)
                 {
-                    Weapons[i].gameObject.SetActive(false);
+                    Weapons[i].Activate(false);
                 }
                 else
                 {
-                    Weapons[i].gameObject.SetActive(true);
+                    Weapons[i].Activate(true);
                     SelectedWeapon = Weapons[i];
                     SelectedWeaponType = WeaponTypes.PISTOL;
                 }
@@ -134,5 +145,23 @@ public class PlayerManager : MonoBehaviour {
         Health = Mathf.Clamp(Health - dmg, 0, MaxHealth);
         if (Health == 0)
             print("DEAD! GAME OVER, BUDDY!");
+    }
+
+
+
+
+    public void FinishAttack()
+    {
+        ww.FinishAttack();
+    }
+
+    public void TurnOffCollider()
+    {
+        WrenchCol.enabled = false;
+    }
+
+    public void TurnOnCollider()
+    {
+        WrenchCol.enabled = true;
     }
 }

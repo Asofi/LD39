@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class LookAt : MonoBehaviour {
 
+    public Transform GunIK;
     public Transform Target;
     Vector2 aimPos = Vector2.zero;
     Vector2 curAimPos = Vector2.zero;
@@ -20,21 +21,30 @@ public class LookAt : MonoBehaviour {
 	void Update () {
         if (Target == null)
         {
+            if (GunIK.gameObject.activeInHierarchy)
+                GunIK.gameObject.SetActive(false);
             transform.localRotation = Quaternion.Slerp(transform.localRotation, startRot, Time.deltaTime * 3);
             StopAllCoroutines();
             curAimPos = Vector2.zero;
+            isAiming = false;
             return;
+        }
+        else
+        {
+            if(!GunIK.gameObject.activeInHierarchy)
+                GunIK.gameObject.SetActive(true);
         }
 
         if (curAimPos == Vector2.zero)
             curAimPos = Target.position;
         if (!isAiming)
             StartCoroutine(RandomAim());
-        Vector3 diff = (Vector3)curAimPos - transform.position;
-        diff.Normalize();
+        GunIK.position = curAimPos;
+        //Vector3 diff = (Vector3)curAimPos - transform.position;
+        //diff.Normalize();
 
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        //float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
     IEnumerator RandomAim()
