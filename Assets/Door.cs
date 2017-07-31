@@ -25,10 +25,4 @@ public class Door : BaseItem {
             DoorObj.DOLocalMoveY(0, 1);
         }
     }
-
-    public override void Examine()
-    {
-        PlayerManager.Instance.Talker.Say("This is Door");
-        print("This is door");
-    }
 }

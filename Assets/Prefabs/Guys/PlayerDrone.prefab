@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 114591937396132240}
   - component: {fileID: 114920258165301454}
   m_Layer: 8
-  m_Name: PlayerDrone 1
+  m_Name: PlayerDrone
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -864,6 +864,8 @@ MonoBehaviour:
     m_Bits: 4294939903
   GunBone: {fileID: 4888813355872678}
   ShootRadius: 10
+  Ammo: {fileID: 0}
+  AmmoBar: {fileID: 0}
 --- !u!114 &114277404292531364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1270,6 +1272,9 @@ MonoBehaviour:
   GotPistol: 0
   WrenchCol: {fileID: 58778071249877790}
   ww: {fileID: 114132401529757442}
+  MeleeHUD: {fileID: 0}
+  GunHUD: {fileID: 0}
+  GunScript: {fileID: 0}
 --- !u!114 &114963363339479872
 MonoBehaviour:
   m_ObjectHideFlags: 1

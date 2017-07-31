@@ -13,20 +13,47 @@ public class Pistol_Weapon : BaseWeapon {
     public float ShootRadius;
 
     bool canShoot = true;
+    public GameObject Ammo;
+    public RectTransform AmmoBar;
+    float size = 1;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+    bool shotTimerFlag = false;
+
+
+    public float Size
+    {
+        get
+        {
+            return size;
+        }
+
+        set
+        {
+            if(value <= 1 && value >=0)
+            {
+                AmmoBar.sizeDelta = new Vector2(250 * value, AmmoBar.sizeDelta.y);
+                size = value;
+
+                if (size > 0.2f)
+                    if(!shotTimerFlag)
+                    canShoot = true;
+                else
+                    canShoot = false;
+            }
+
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
+        Ammo.SetActive(true);
 	}
 
     public override void Attack()
     {
         if (canShoot)
         {
+            Size -= 0.2f;
             GunBone.DOLocalMoveY(0.2f, timeBetweenShots / 2).SetLoops(2, LoopType.Yoyo);
             canShoot = false;
             if (shotTimer != null)
@@ -55,14 +82,23 @@ public class Pistol_Weapon : BaseWeapon {
     }
 
     IEnumerator shotTimer;
+
     IEnumerator ShotTimer()
     {
+        shotTimerFlag = true;
         Material lrColor = BulletTrail.material;
         lrColor.color = new Color(lrColor.color.r, lrColor.color.g, lrColor.color.b, 1);
         Tween FadeOut = lrColor.DOColor(new Color(lrColor.color.r, lrColor.color.g, lrColor.color.b, 0), timeBetweenShots);
         yield return FadeOut.WaitForCompletion();
         BulletTrail.enabled = false;
-        canShoot = true;
+        if(Size > 0.2f)
+            canShoot = true;
+        shotTimerFlag = false;
 
+    }
+
+    private void OnDisable()
+    {
+        shotTimerFlag = false;
     }
 }

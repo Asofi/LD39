@@ -35,6 +35,10 @@ public class PlayerManager : MonoBehaviour {
     public Collider2D WrenchCol;
     public Wrench_Weapon ww;
 
+    public GameObject MeleeHUD, GunHUD;
+
+    public Pistol_Weapon GunScript;
+
     public float Health
     {
         get
@@ -44,7 +48,7 @@ public class PlayerManager : MonoBehaviour {
 
         set
         {
-            if (value >= 0)
+            if (value >= 0 && value <= MaxHealth)
             {
                 transform.DOKill();
                 health = value;
@@ -74,10 +78,17 @@ public class PlayerManager : MonoBehaviour {
         Health = MaxHealth;
         Stamina = MaxStamina;
 
-        GetWrench();
+        //GetWrench();
     }
 
     void Update () {
+
+        if (GunScript.Size < 1)
+        {
+            GunScript.Size += Time.deltaTime * 0.1f;
+        }
+
+        Health -= Time.deltaTime * (Input.GetKey(KeyCode.LeftShift) ? 1.5f : 1);
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -85,11 +96,25 @@ public class PlayerManager : MonoBehaviour {
             SelectedWeapon.Attack();
         }
 
-	}
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if(GotWrench)
+                SelectWrench();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if(GotPistol)
+                SelectPistol();
+        }
+
+
+    }
 
     public void GetWrench()
     {
         GotWrench = true;
+        MeleeHUD.SetActive(true);
         print("U got Wrench");
         SelectWrench();
     }
@@ -116,6 +141,7 @@ public class PlayerManager : MonoBehaviour {
     public void GetPistol()
     {
         GotPistol = true;
+        GunHUD.SetActive(true);
         print("U got Pistol");
         SelectPistol();
     }
@@ -163,5 +189,10 @@ public class PlayerManager : MonoBehaviour {
     public void TurnOnCollider()
     {
         WrenchCol.enabled = true;
+    }
+
+    public void RefillEnergy(float amount)
+    {
+        Health += amount;
     }
 }
