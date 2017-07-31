@@ -823,6 +823,7 @@ MonoBehaviour:
   - {fileID: 1835321771746742}
   Damage: 35
   timeBetweenShots: 1
+  AP: {fileID: 0}
   anim: {fileID: 95591121187602530}
 --- !u!114 &114196996058688598
 MonoBehaviour:
@@ -857,6 +858,7 @@ MonoBehaviour:
   - {fileID: 1206048677483138}
   Damage: 20
   timeBetweenShots: 0.4
+  AP: {fileID: 0}
   FirePoint: {fileID: 4596478865278694}
   BulletTrail: {fileID: 120009755689812554}
   HitLayerMask:
@@ -1259,6 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0235b9eba4d3d1b4fa9304abfd43b5eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AP: {fileID: 0}
   HealthBar: {fileID: 0}
   Talker: {fileID: 114381052611062630}
   SelectedWeaponType: 0
