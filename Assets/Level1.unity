@@ -7190,7 +7190,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 506926809}
-  m_LocalRotation: {x: 0, y: 0, z: -0.6815479, w: 0.73177356}
+  m_LocalRotation: {x: 0, y: 0, z: -0.68154794, w: 0.7317736}
   m_LocalPosition: {x: 0.72111326, y: 0.040876806, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -7396,11 +7396,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4781983935972910, guid: ab6adbe079a94a542a5de014834b0cf5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 78.66757
+      value: 73.62
       objectReference: {fileID: 0}
     - target: {fileID: 4781983935972910, guid: ab6adbe079a94a542a5de014834b0cf5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17.362247
+      value: -6.73
       objectReference: {fileID: 0}
     - target: {fileID: 4781983935972910, guid: ab6adbe079a94a542a5de014834b0cf5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8091,7 +8091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteMesh: {fileID: 11400000, guid: ea9eadd7e0b458e45b5b4772bd3e43d1, type: 2}
-  m_Color: {r: 0.6452206, g: 0.75349903, b: 0.8602941, a: 1}
+  m_Color: {r: 0.7296146, g: 0.5441177, b: 1, a: 1}
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: -2120223453
@@ -14834,6 +14834,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.40184
       objectReference: {fileID: 0}
+    - target: {fileID: 114660808107130178, guid: 358fc59887e817a499436c34e0bc6754,
+        type: 2}
+      propertyPath: timeBetweenShots
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114955180666648176, guid: 358fc59887e817a499436c34e0bc6754, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 358fc59887e817a499436c34e0bc6754, type: 2}
@@ -15039,6 +15044,15 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494575109515676, guid: 982e9ab5285a0554484a151cd6c789a2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707252507297048, guid: 982e9ab5285a0554484a151cd6c789a2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 982e9ab5285a0554484a151cd6c789a2, type: 2}
@@ -18922,6 +18936,21 @@ Prefab:
         type: 2}
       propertyPath: RaycastMask.m_Bits
       value: 4294903295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660808107130178, guid: 358fc59887e817a499436c34e0bc6754,
+        type: 2}
+      propertyPath: Damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660808107130178, guid: 358fc59887e817a499436c34e0bc6754,
+        type: 2}
+      propertyPath: timeBetweenShots
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114804734887652634, guid: 358fc59887e817a499436c34e0bc6754,
+        type: 2}
+      propertyPath: Spread
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 358fc59887e817a499436c34e0bc6754, type: 2}
@@ -24911,7 +24940,7 @@ Prefab:
     - target: {fileID: 114123216800292714, guid: ab6adbe079a94a542a5de014834b0cf5,
         type: 2}
       propertyPath: Amount
-      value: 20
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1447706259345620, guid: ab6adbe079a94a542a5de014834b0cf5, type: 2}
       propertyPath: m_Layer

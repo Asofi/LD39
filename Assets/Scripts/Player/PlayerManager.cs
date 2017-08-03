@@ -58,8 +58,8 @@ public class PlayerManager : MonoBehaviour {
                 if (value >= MaxHealth)
                     value = MaxHealth;
                 health = value;
-                HealthBar.fillAmount = health / MaxHealth;
-                //HpTween = HealthBar.DOFillAmount(health / MaxHealth, 0.1f).SetId(transform);
+                //HealthBar.fillAmount = health / MaxHealth;
+                HpTween = HealthBar.DOFillAmount(health / MaxHealth, 0.1f).SetId(transform).SetUpdate(true);
             } else if(value <= 0)
             {
                 Death();
